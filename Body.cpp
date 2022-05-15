@@ -7,5 +7,5 @@ void BodyPart::draw() const {
 }
 
 void BodyPart::eatenBy(Snake *snake) {
-
+    snake->kill();
 }

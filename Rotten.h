@@ -10,6 +10,6 @@ public:
     Rotten(const Rotten& rotten) : Fruit(rotten.getLifeTime(), rotten.getNutritionValue(), rotten.getColor()){};
     ~Rotten(){};
 
-    void eatenBy(Snake *snake);
+    void eatenBy(Snake* snake);
 };
 #endif //SNAKE_ROTTEN_H

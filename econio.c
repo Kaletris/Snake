@@ -36,8 +36,8 @@ static WORD colormap[] = {
 
 void econio_gotoxy(int x, int y) {
     COORD dwCursorPosition;
-    dwCursorPosition.X = (SHORT) y;
-    dwCursorPosition.Y = (SHORT) x;
+    dwCursorPosition.Y = (SHORT) y;
+    dwCursorPosition.X = (SHORT) x;
     SetConsoleCursorPosition(STDOUT, dwCursorPosition);
 }
 

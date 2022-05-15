@@ -13,9 +13,21 @@ void Head::eatenBy(Snake* snake) {
 }
 
 void Head::move() {
-    tryEat(tile->adjacent(dir)->getObject());
+    Tile* nextTile = tile->adjacent(dir);
+    tryEat(nextTile->getObject());
+    nextTile->clear();
+    nextTile->set(this);
+    Tile* previousTile = this->tile;
+    this->tile = nextTile;
+    previousTile->clear();
+    auto length = snake->getLength();
+    auto first = snake->body.first;
+    BodyPart* newBodyPart = new BodyPart(length, first);
+    previousTile->set(newBodyPart);
 }
 
 void Head::tryEat(Object *object) {
-    object->eatenBy(snake);
+    if(object != NULL){
+        object->eatenBy(snake);
+    }
 }

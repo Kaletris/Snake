@@ -14,7 +14,7 @@ public:
     Fruit(const Fruit& fruit): Object(fruit.getLifeTime()), nutritionValue(fruit.nutritionValue), color(fruit.color){};
     ~Fruit();
 
-    virtual void eatenBy(Snake *snake);
+    virtual void eatenBy(Snake* snake);
 
     int getNutritionValue() const {return nutritionValue;};
     colour getColor() const {return color;};

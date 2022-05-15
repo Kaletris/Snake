@@ -17,12 +17,12 @@ public:
     Head(const Head& head) : Object(head.getLifeTime()), dir(head.dir), tile(head.tile), snake(head.snake){};
     ~Head(){};
 
-    void changeDirection(Direction dir){ dir = dir;};
+    void changeDirection(const Direction newDir) { dir = newDir;};
     Direction getDirection() const {return dir;};
-    void setTile(const Tile* tile){tile = tile;};
+    void setTile(Tile* newTile){tile = newTile;};
     Tile* getTile() const {return tile;};
 
-    void draw() const;
+    void draw() const override;
     void move();
     void tryEat(Object* object);
 

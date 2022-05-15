@@ -10,21 +10,29 @@ class Table{
     int height;
     int width;
 public:
-    Tile** tiles;
+    Tile*** tiles;
     Table(int height = 10, int width = 10)
-        : height(height), width(width){
-        tiles[height][width];
+        : height(height), width(width) {
+        tiles = new Tile**[height];
+        for (int i = 0; i < height; i++) {
+            tiles[i] = new Tile*[width];
+
+            for (int j = 0; j < width; j++) {
+                tiles[i][j] = new Tile(this);
+            }
+        }
     };
     Table(const Table& table){};
     ~Table(){};
 
-    int getHeight() const;
-    int getWidth() const;
+    int getHeight() const {return height;};
+    int getWidth() const {return width;};
 
     void drawTable() const;
+    void refreshTable();
     Tile* adjacent(Direction dir, Tile* tile) const;
 
-    Snake spawnSnake(Snake snake = Snake()) const;
+    Snake* spawnSnake(Snake* snake = new Snake()) const;
     //Fruit  spawnFruit(Fruit fruit = Fruit());
 
 };
