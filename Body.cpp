@@ -1,8 +1,11 @@
-//
-// Created by Kaletris on 2022. 05. 12..
-//
-
 #include "Body.h"
 #include "Snake.h"
+#include <iostream>
 
-void BodyPart::eatenBy(Snake snake) {}
+void BodyPart::draw() const {
+    std::cout << 's';
+}
+
+void BodyPart::eatenBy(Snake *snake) {
+    snake->kill();
+}

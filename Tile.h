@@ -2,17 +2,24 @@
 #define SNAKE_TILE_H
 
 #include <cstddef>
+#include "Enums.h"
+class Table;
+
 class Object;
 
 class Tile{
-    Object* has;
+    Object* ob;
+    Table* table;
 public:
-    Tile(Object* has = NULL) : has(has){};
-    Tile(const Tile& tile) : has(tile.has){};
+    Tile(): ob(NULL), table(NULL) {};
+    Tile(Table* table = NULL) : ob(NULL), table(table){};
+    Tile(const Tile& tile) : ob(tile.ob), table(tile.table){};
     ~Tile(){};
 
     void draw() const;
+    void clear();
     void set(Object* object);
+    Tile* adjacent(Direction dir);
     Object* getObject() const;
 };
 

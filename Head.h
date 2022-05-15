@@ -1,24 +1,32 @@
 #ifndef SNAKE_HEAD_H
 #define SNAKE_HEAD_H
 
+#include <cstdlib>
 #include "Object.h"
+#include "Enums.h"
 
 class Snake;
-
-enum direction {north, west, east, south};
+class Tile;
 
 class Head : public Object{
-    direction dir;
+    Direction dir;
+    Tile* tile;
+    Snake* snake;
 public:
-    Head(int lifetime = 30, direction dir = north) : Object(lifetime), dir(dir){};
-    Head(const Head& head) : Object(head.getLifeTime()), dir(head.dir){};
+    Head(Snake* snake = NULL, int lifetime = 30, Direction dir = north) : Object(lifetime), dir(dir), tile(NULL), snake(snake){};
+    Head(const Head& head) : Object(head.getLifeTime()), dir(head.dir), tile(head.tile), snake(head.snake){};
     ~Head(){};
+
+    void changeDirection(const Direction newDir) { dir = newDir;};
+    Direction getDirection() const {return dir;};
+    void setTile(Tile* newTile){tile = newTile;};
+    Tile* getTile() const {return tile;};
+
+    void draw() const override;
     void move();
     void tryEat(Object* object);
-    void changeDirection(direction dir){dir = dir;};
-    direction getDirection() const {return dir;};
 
-    void eatenBy(Snake snake);
+    void eatenBy(Snake *snake);
 };
 
 #endif //SNAKE_HEAD_H
