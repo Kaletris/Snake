@@ -4,12 +4,13 @@
 #include "Tile.h"
 #include "Snake.h"
 #include "Fruit.h"
+#include "Enums.h"
 
 class Table{
     int height;
     int width;
-    Tile** tiles;
 public:
+    Tile** tiles;
     Table(int height = 10, int width = 10)
         : height(height), width(width){
         tiles[height][width];
@@ -17,10 +18,15 @@ public:
     Table(const Table& table){};
     ~Table(){};
 
-    Snake spawnSnake(Snake snake);
-    Fruit  spawnFruit();
     int getHeight() const;
     int getWidth() const;
+
+    void drawTable() const;
+    Tile* adjacent(Direction dir, Tile* tile) const;
+
+    Snake spawnSnake(Snake snake = Snake()) const;
+    //Fruit  spawnFruit(Fruit fruit = Fruit());
+
 };
 
 #endif //SNAKE_TABLE_H

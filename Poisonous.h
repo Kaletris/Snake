@@ -9,7 +9,7 @@ public:
     Poisonous(const Poisonous& poisonous) : Fruit(poisonous.getLifeTime(), poisonous.getNutritionValue(), poisonous.getColor()){};
     ~Poisonous(){};
 
-    void eatenBy(Snake snake);
+    void eatenBy(Snake *snake);
 };
 
 #endif //SNAKE_POISONOUS_H

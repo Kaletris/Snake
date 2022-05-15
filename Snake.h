@@ -11,10 +11,11 @@ class Snake{
 public:
     Head head;
     Body* body;
-    Snake(int speed = 1, int length = 1, bool alive = true, int starve = 30)
-            :  speed(speed), length(length), alive(alive), head(Head(starve)), body(NULL){};
+    Snake(int speed = 1, int starve = 30, int length = 1, bool alive = true)
+            : speed(speed), length(length), alive(alive), head(Head(NULL)), body(NULL) { this->head = Head(this);};
     Snake(const Snake& snake) : length(snake.length), speed(snake.speed), alive(snake.alive), head(snake.head){};
     ~Snake(){};
+
     void changeSpeed(int speed){speed = speed;};
     void changeLength(int length){length = length;};
     bool isAlive() const{return alive;};

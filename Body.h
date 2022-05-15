@@ -12,8 +12,11 @@ public:
     BodyPart( int lifetime = 1, BodyPart* p = NULL) : Object(lifetime), next(p) {};
     BodyPart(const BodyPart& bodyPart) : Object(bodyPart.getLifeTime()), next(bodyPart.next){};
     ~BodyPart(){};
-    void eatenBy(Snake snake);
+
     BodyPart* getNext() const;
+
+    void eatenBy(Snake *snake);
+    void draw() const;
 };
 
 class Body{

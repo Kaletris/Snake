@@ -9,7 +9,8 @@ public:
     Object(const Object& object) :lifetime(object.lifetime){};
     virtual ~Object(){};
     void changeLifetime(int lifetime = 0){lifetime = lifetime;};
-    virtual void eatenBy(Snake snake) = 0;
+    virtual void eatenBy(Snake *snake) = 0;
+    virtual void draw() const = 0;
     int getLifeTime() const{return lifetime;};
 };
 #endif //SNAKE_OBJECT_H
