@@ -6,24 +6,30 @@
 
 class Snake;
 class BodyPart;
+class Tile;
 
 class Body{
 public:
     BodyPart* first;
-    BodyPart* current;
-    Body(BodyPart* first = NULL, BodyPart* current = NULL) : first(first), current(NULL){};
-    Body(const Body& body) : first(body.first), current(body.current){};
-    ~Body(){};
+    Body(BodyPart* first = NULL) : first(first){};
+    Body(const Body& body) : first(body.first){};
+    ~Body();
+
+    void setFirst(BodyPart* newFirst){first = newFirst;};
 };
 
 class BodyPart : public Object{
+    Snake* snake;
+    Tile* tile;
+    bool full;
 public:
     BodyPart* next;
-    BodyPart( int lifetime = 1, BodyPart* next = NULL) : Object(lifetime), next(next) {};
-    BodyPart(const BodyPart& bodyPart) : Object(bodyPart.getLifeTime()), next(bodyPart.next){};
-    ~BodyPart(){};
+    BodyPart(Snake* snake, Tile* tile, int lifetime = 0, bool full = false, BodyPart* next = NULL) : Object(lifetime), snake(snake), tile(tile), full(full), next(next) {};
+    BodyPart(const BodyPart& bodyPart) : Object(bodyPart.getLifeTime()), snake(bodyPart.snake), tile(bodyPart.tile), full(bodyPart.full), next(bodyPart.next){};
+    ~BodyPart();
 
-    //BodyPart* getNext() const{return next;};
+    void removeBodyPart();
+    void changeLifetime(int change = 0);
 
     void eatenBy(Snake *snake);
     void draw() const;

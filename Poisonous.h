@@ -5,8 +5,8 @@
 
 class Poisonous : public Fruit{
 public:
-    Poisonous(int lifetime = 1, int nutritionValue = 1, colour color = white) : Fruit(lifetime, nutritionValue, color){};
-    Poisonous(const Poisonous& poisonous) : Fruit(poisonous.getLifeTime(), poisonous.getNutritionValue(), poisonous.getColor()){};
+    Poisonous(int lifetime = 10, int nutritionValue = 0, char shape = 'P', EconioColor color = COL_RED) : Fruit(lifetime, nutritionValue, shape, color){};
+    Poisonous(const Poisonous& poisonous) : Fruit(poisonous.getLifeTime(), poisonous.getNutritionValue(), poisonous.getShape(), poisonous.getColor()){};
     ~Poisonous(){};
 
     void eatenBy(Snake* snake);

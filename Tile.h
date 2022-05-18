@@ -11,7 +11,6 @@ class Tile{
     Object* ob;
     Table* table;
 public:
-    Tile(): ob(NULL), table(NULL) {};
     Tile(Table* table = NULL) : ob(NULL), table(table){};
     Tile(const Tile& tile) : ob(tile.ob), table(tile.table){};
     ~Tile(){};

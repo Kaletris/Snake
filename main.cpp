@@ -15,31 +15,23 @@
 #include <thread>
 
 int main() {
-    int speed = 10;
-    Snake snake(speed);
-    Table table(10, 10);
+    Snake snake;
+    Table table(3, 3);
     table.spawnSnake(&snake);
     table.drawTable();
-/*
-    std::thread([&]
-                {
-                    while(true)
-                    {
-                        // Wait ticks
-                        std::this_thread::sleep_for(std::chrono::milliseconds (1000/speed*10));
-                        // Call move
-                        std::cout << "asd" <<std::endl;
-                        //snake.head.move();
-                    }
-                });
-*/
-    int a;
-    //std::cin >> a;
-    snake.move();
-    table.drawTable();
+    char a;
     std::cin >> a;
     snake.move();
-    table.drawTable();
+    table.refreshTable();
+    std::cin >> a;
+    snake.move();
+    table.refreshTable();
+    std::cin >> a;
+    snake.move();
+    table.refreshTable();
+    std::cin >> a;
+    snake.move();
+    table.refreshTable();
     std::cin >> a;
 
     return 0;

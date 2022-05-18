@@ -23,17 +23,17 @@ public:
         }
     };
     Table(const Table& table){};
-    ~Table(){};
+    ~Table();
 
     int getHeight() const {return height;};
     int getWidth() const {return width;};
 
-    void drawTable() const;
     void refreshTable();
+    void drawTable() const;
     Tile* adjacent(Direction dir, Tile* tile) const;
 
     Snake* spawnSnake(Snake* snake = new Snake()) const;
-    //Fruit  spawnFruit(Fruit fruit = Fruit());
+    Tile * spawnFruit(Fruit* fruit = new Fruit());
 
 };
 

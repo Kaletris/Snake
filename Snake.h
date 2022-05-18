@@ -5,19 +5,26 @@
 #include "Body.h"
 
 class Snake{
-    int length;
     int speed;
+    int length;
     bool alive;
 public:
-    Head head;
-    Body body;
-    Snake(int speed = 10, int lifetime = 30, int length = 0, bool alive = true)
-            : speed(speed), length(length), alive(alive), head(Head(this, lifetime)), body(Body()) {};
-    Snake(const Snake& snake) : length(snake.length), speed(snake.speed), alive(snake.alive), head(snake.head){};
-    ~Snake(){};
+    Head* head; //head nem lehet NULL
+    Body* body; //body nem lehet NULL
+    Snake(int speed = 10, int lifetime = 30, int length = 2, bool alive = true)
+            : speed(speed), length(length), alive(alive), head(new Head(this, lifetime)), body(new Body()) {};
+    Snake(const Snake& snake) : speed(snake.speed), length(snake.length), alive(snake.alive), head(snake.head){};
+    ~Snake(){
+        if(head != NULL){
+            delete head;
+        }
+        if(body != NULL){
+            delete body;
+        }
+    };
 
     void changeSpeed(int newSpeed){speed = newSpeed;};
-    void changeLength(int newLength){length = newLength;};
+    void changeLength(int change);
     bool isAlive() const{return alive;};
     void kill();
     int getLength() const{
