@@ -96,12 +96,12 @@ Fruit* Table::makeFruit() {
     int sum = 0;
     for (int i = 0; i < height; ++i) {
         for (int j = 0; j < width; ++j) {
-            if(tiles[i][j]->getObject() != NULL){
+            if(tiles[i][j]->getObject() == NULL){
                 sum++;
             }
         }
     }
-    if(sum / (double) (height * width) * 100 < 30){
+    if(sum / (double)(height * width) * 100 < 30){
         return new Fruit();
     }
     int tmp;
@@ -139,15 +139,9 @@ void Table::spawnFruit(Fruit* fruit) {
     if(sum <= 0){
         throw std::logic_error("Tried to spawn fruit, when there was no empty tile.");
     }
-    int tmp;
-    tmp = rand() % sum;
-    int h = tmp / height;
-    int w = tmp % width;
-    int s = h + w;
-    freeTiles[w]->set(fruit);
-/*
-    return *freeTiles[tmp / height + tmp % width];
-*/
+    int pos;
+    pos = rand() % sum;
+    freeTiles[pos]->set(fruit);
 }
 
 

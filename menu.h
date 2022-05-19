@@ -9,72 +9,64 @@
 #define nehezLista "dicsoseglistaNehez.txt"
 
 typedef enum Menu {
-    fomenu,
-    kilepomenu,
-    jatekvalasztomenu,
-    ranglistamenu,
-    kilepes,
-    konnyuJatek,
-    kozepesJatek,
-    nehezJatek,
-    konnyuRanglista,
-    kozepesRanglista,
-    nehezRanglista
+    mainMenu,
+    escMenu,
+    gameSetMenu,
+    fameMenu,
+    exitMenu,
+    easyMode,
+    normalMode,
+    hardMode,
+    easyList,
+    normalList,
+    hardList
 } Menu;
 
-enum Nehezseg {
-    konnyu,
-    kozepes,
-    nehez
+enum Difficulty {
+    easy,
+    normal,
+    hard
 };
 
-class Koordinata{
+class Koordinate{
     int x;
     int y;
 public:
-    Koordinata(int x = 0, int y = 0) : x(x), y(y){};
-    Koordinata(const Koordinata& koordinata) : x(koordinata.x), y(koordinata.y){};
-    ~Koordinata(){};
+    Koordinate(int x = 0, int y = 0) : x(x), y(y){};
+    Koordinate(const Koordinate& koordinate) : x(koordinate.x), y(koordinate.y){};
+    ~Koordinate(){};
 
     int getX() const{return x;};
     int getY() const{return y;};
     void setX(const int newX = 0){x = newX;};
     void setY(const int newY = 0){y = newY;};
-    void move(int newX, int newY){x = newX; y = newY;};
+    void set(const int newX = 0, const int newY = 0){x = newX; y = newY;};
+    void move(int newX, int newY){
+        x = newX;
+        y = newY;
+        econio_gotoxy(x, y);
+    };
 };
-
-bool operator==(const Koordinata& a, const Koordinata& b){
+/*
+bool operator==(const Koordinate& a, const Koordinate& b){
     return a.getX() == b.getX() && a.getY() == b.getY();
 
-}
+}*/
 
-class Eredmeny{
-    char* nev;
-    int pontszam;
-    Eredmeny* next;
+class Result{
+    char* name;
+    int points;
+    Result* next;
 public:
-    Eredmeny(char* nev = (char*)"MyName", int pontszam = 0, Eredmeny* next = NULL) : nev(nev), pontszam(pontszam), next(next){};
-    Eredmeny(const Eredmeny& eredmeny) : nev(eredmeny.nev), pontszam(eredmeny.pontszam), next(eredmeny.next){};
-    ~Eredmeny(){};
+    Result(char* nev = (char*)"MyName", int points = 0, Result* next = NULL) : name(nev), points(points), next(next){};
+    Result(const Result& result) : name(result.name), points(result.points), next(result.next){};
+    ~Result(){};
 };
 
-/*
-void menu_navigacio_kiiras();
+void wtite_navigation();
 
-Menu menu_fomenu_vezerles(Koordinata);
+void write_main_menu();
 
-void menu_fomenu_kiiras();
+Menu menu_navigation();
 
-Menu menu_kilepes_megerosites_vezerles(Koordinata);
-
-void menu_kilepes_megerosites_kiiras();
-
-Menu menu_uj_jatek_menu_vezerles(Koordinata);
-
-void menu_uj_jatek_menu_kiiras();
-
-Menu menu_ranglista_vezerles(Koordinata);
-
-void menu_ranglista_kiiras();
-*/
 #endif //MAIN_CPP_MENU_H

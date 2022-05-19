@@ -11,6 +11,9 @@ void Snake::move() {
 
 void Snake::changeLength(int change) {
     length += change;
+    if(length < 0){
+        kill();
+    }
     /*
      * //Amennyiben a kigyo osszes testresze tovabb el, nemcsak az ujonnan letrejottek
     if(length < 0) kill();

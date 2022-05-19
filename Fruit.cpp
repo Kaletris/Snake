@@ -3,7 +3,7 @@
 #include <iostream>
 
 void Fruit::eatenBy(Snake* snake) {
-    snake->changeLength(snake->getLength() + nutritionValue);
+    snake->changeLength(nutritionValue);
     delete this;
 }
 
