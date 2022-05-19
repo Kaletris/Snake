@@ -11,7 +11,7 @@ class Snake{
 public:
     Head* head; //head nem lehet NULL
     Body* body; //body nem lehet NULL
-    Snake(int speed = 10, int lifetime = 30, int length = 2, bool alive = true)
+    Snake(int speed = 10, int lifetime = 30, int length = 1, bool alive = true)
             : speed(speed), length(length), alive(alive), head(new Head(this, lifetime)), body(new Body()) {};
     Snake(const Snake& snake) : speed(snake.speed), length(snake.length), alive(snake.alive), head(snake.head){};
     ~Snake(){

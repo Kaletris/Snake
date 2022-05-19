@@ -6,7 +6,7 @@
 
 void Tile::draw() const {
     if(ob == NULL){
-        std::cout << '.';
+        std::cout << ' ';
         return;
     }
     ob->draw();

@@ -2,12 +2,16 @@
 #include "Snake.h"
 #include "Tile.h"
 #include <iostream>
+#include "econio.h"
 
 void BodyPart::draw() const {
-    if(full){
+    econio_textcolor(COL_GREEN);
+    if (full) {
+        std::cout << 'S';
+    } else {
         std::cout << 's';
     }
-    std::cout << 's';
+    econio_textcolor(COL_RESET);
 }
 
 void BodyPart::eatenBy(Snake* snake1) {
@@ -26,6 +30,7 @@ BodyPart::~BodyPart() {}
 void BodyPart::removeBodyPart() {
     if(snake == NULL) throw std::logic_error("Snake NULL");
     if(snake->body == NULL) throw std::logic_error("Body NULL");
+    //ha a kigyonak 1 teste van igy torli
     if(this == snake->body->first){
         this->tile->clear();
         this->snake->body->first = NULL;
@@ -33,6 +38,7 @@ void BodyPart::removeBodyPart() {
 
         return;
     }
+    //ha a kigyonak tobb teste van igy torli
     BodyPart* afore;
     afore = snake->body->first;
     while (afore->next != this){

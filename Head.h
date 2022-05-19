@@ -18,7 +18,7 @@ public:
     ~Head(){};
 
     void changeLifetime(const int change) override;
-    void changeDirection(const Direction newDir) { dir = newDir;};
+    void changeDirection(const Direction newDir);
     Direction getDirection() const {return dir;};
     void setTile(Tile* newTile){tile = newTile;};
     Tile* getTile() const {return tile;};

@@ -4,10 +4,11 @@
 
 void Fruit::eatenBy(Snake* snake) {
     snake->changeLength(snake->getLength() + nutritionValue);
+    delete this;
 }
 
 void Fruit::draw() const {
     econio_textcolor(color);
     std::cout << shape;
-    econio_textcolor(COL_WHITE);
+    econio_textcolor(COL_RESET);
 }

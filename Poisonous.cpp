@@ -4,4 +4,5 @@
 
 void Poisonous::eatenBy(Snake *snake) {
     snake->kill();
+    delete this;
 }

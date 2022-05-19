@@ -33,7 +33,9 @@ public:
     Tile* adjacent(Direction dir, Tile* tile) const;
 
     Snake* spawnSnake(Snake* snake = new Snake()) const;
-    Tile * spawnFruit(Fruit* fruit = new Fruit());
+
+    Fruit* makeFruit();
+    void spawnFruit(Fruit* fruit = NULL);
 
 };
 

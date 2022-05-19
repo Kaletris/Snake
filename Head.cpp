@@ -3,9 +3,12 @@
 #include "Table.h"
 #include <iostream>
 #include "Tile.h"
+#include "econio.h"
 
 void Head::draw() const {
+    econio_textcolor(COL_GREEN);
     std::cout << 'H';
+    econio_textcolor(COL_RESET);
 }
 
 void Head::eatenBy(Snake* snake1) {
@@ -20,7 +23,17 @@ void Head::move() {
     tryEat(nextTile->getObject());
 
     //Ha meghalt a kigyo lekezeljuk
-    if(!snake->isAlive()) throw "Kigyo meghalt";
+    if(!snake->isAlive()){
+        econio_gotoxy(10, 10);
+        std::cout << "A kigyo meghalt";
+        char a;
+        std::cin >> a;
+//        throw std::logic_error("Kigyo meghalt");
+    }
+
+    if(nextTile->getObject() != NULL){
+        nextTile->clear();
+    }
 
     //megmondjuk a kovi tile-nak hogy rajta vagyunk hogy rajta vagyunk
     nextTile->set(this);
@@ -54,5 +67,32 @@ void Head::changeLifetime(const int change) {
     Object::changeLifetime(change);
     if(this->getLifeTime() < 0){
         snake->kill();
+    }
+}
+
+void Head::changeDirection(const Direction newDir)  {
+    switch (newDir) {
+        case north:
+            if(dir != south){
+                dir = newDir;
+            }
+            break;
+        case west:
+            if(dir != east){
+                dir = newDir;
+            }
+            break;
+        case south:
+            if(dir != north){
+                dir = newDir;
+            }
+            break;
+        case east:
+            if(dir != west){
+                dir = newDir;
+            }
+            break;
+        default:
+            throw std::logic_error("Invalid direction");
     }
 }

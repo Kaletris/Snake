@@ -4,10 +4,13 @@
 #include "Fruit.h"
 
 class Snake;
+class BodyPart;
 class Rotten : public Fruit{
+    void changeListLifeTime(BodyPart* bodyPart, int change, BodyPart* afore = NULL);
 public:
-    Rotten(int lifetime = 10, int nutritionValue = -1, EconioColor color = COL_BROWN) : Fruit(lifetime, nutritionValue, color){};
-    Rotten(const Rotten& rotten) : Fruit(rotten.getLifeTime(), rotten.getNutritionValue(), rotten.getColor()){};
+    Rotten(int lifetime = 10, int nutritionValue = -1, char shape = 'R', EconioColor color = COL_BROWN)
+    : Fruit(shape, color, nutritionValue, lifetime) {};
+    Rotten(const Rotten& rotten) : Fruit(rotten.getShape(), rotten.getColor(), rotten.getNutritionValue(), rotten.getLifeTime()) {};
     ~Rotten(){};
 
     void eatenBy(Snake* snake);

@@ -1,5 +1,7 @@
 #include "Table.h"
 #include "econio.h"
+#include "Rotten.h"
+#include "Poisonous.h"
 #include <stdexcept>
 
 Snake* Table::spawnSnake(Snake* snake) const {
@@ -49,14 +51,14 @@ Tile *Table::adjacent(Direction dir, Tile *tile) const {
                             return tiles[i + 1][j];
                         }
                     case west:
-                        if (i <= 0) {
+                        if (j <= 0) {
                             return tiles[i][width - 1];
                         } else {
                             return tiles[i][j - 1];
                         }
                     case east:
-                        if (i >= width - 1) {
-                            return tiles[i][width - 1];
+                        if (j >= width - 1) {
+                            return tiles[i][0];
                         } else {
                             return tiles[i][j + 1];
                         }
@@ -74,13 +76,6 @@ void Table::drawTable() const {
     for (int i = 0; i < height; ++i) {
         for (int j = 0; j < width; ++j) {
             econio_gotoxy(i, j);
-            /*
-            if (tiles[i][j]->getObject() == NULL) {
-                std::cout << ' ';
-            } else {
-                tiles[i][j]->getObject()->draw();
-            }
-             */
             tiles[i][j]->draw();
         }
     }
@@ -97,16 +92,62 @@ Table::~Table() {
     delete[] tiles;
 }
 
-Tile* Table::spawnFruit(Fruit* fruit) {
-    int i, j;
-    do{
-        i = rand() % height;
-        j = rand() % width;
-        if(tiles[i][j]->getObject() == NULL){
-            tiles[i][j]->set(fruit);
-            break;
+Fruit* Table::makeFruit() {
+    int sum = 0;
+    for (int i = 0; i < height; ++i) {
+        for (int j = 0; j < width; ++j) {
+            if(tiles[i][j]->getObject() != NULL){
+                sum++;
+            }
         }
-    } while (true);
+    }
+    if(sum / (double) (height * width) * 100 < 30){
+        return new Fruit();
+    }
+    int tmp;
+    tmp = rand() % 4;
+    switch (tmp) {
+        case 0:
+        case 1:
+            return new Fruit();
+        case 2:
+            return new Rotten();
+        case 3:
+            return new Poisonous();
+        default:
+            throw std::logic_error("Tried to make undefined Fruit");
 
-    return tiles[i][j];
+    }
+
 }
+
+void Table::spawnFruit(Fruit* fruit) {
+
+    if(fruit == NULL){
+        fruit = makeFruit();
+    }
+
+    int sum = 0;
+    Tile* freeTiles[height * width];
+    for (int i = 0; i < height; ++i) {
+        for (int j = 0; j < width; ++j) {
+            if(tiles[i][j]->getObject() == NULL){
+                freeTiles[sum++] = tiles[i][j];
+            }
+        }
+    }
+    if(sum <= 0){
+        throw std::logic_error("Tried to spawn fruit, when there was no empty tile.");
+    }
+    int tmp;
+    tmp = rand() % sum;
+    int h = tmp / height;
+    int w = tmp % width;
+    int s = h + w;
+    freeTiles[w]->set(fruit);
+/*
+    return *freeTiles[tmp / height + tmp % width];
+*/
+}
+
+
