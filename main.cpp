@@ -1,23 +1,12 @@
-#include <iostream>
 #include "Poisonous.h"
-#include "Rotten.h"
-#include "Table.h"
-#include "Head.h"
-#include "Body.h"
-#include "Snake.h"
-#include "Enums.h"
 #include "menu.h"
 #include "GameModes.h"
-
+#include "Fame.h"
 #ifdef _WIN32
-
 #include "windows.h"
-
 #else
 #include <unistd.h>
 #endif
-
-#include <iostream>
 #include <chrono>
 #include <thread>
 
@@ -37,7 +26,9 @@ int main() {
                 menu = game_set_menu_navigation();
                 break;
             case fameMenu:
-                menu = fame_menu_navigation();
+                writeFameList();
+                econio_getch();
+                menu = mainMenu;
                 break;
             case fixMode:
                 startFixGame();

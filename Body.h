@@ -16,7 +16,6 @@ public:
     ~Body();
 
     void setFirst(BodyPart* newFirst){first = newFirst;};
-    //void changeLifetimeOfBodyparts(int change)
 };
 
 class BodyPart : public Object{

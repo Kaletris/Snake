@@ -2,8 +2,6 @@
 #include "Snake.h"
 #include "Table.h"
 #include <iostream>
-#include "Tile.h"
-#include "econio.h"
 
 void Head::draw() const {
     econio_textcolor(COL_GREEN);

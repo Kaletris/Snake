@@ -2,7 +2,6 @@
 #include "iostream"
 #include "Object.h"
 #include "Table.h"
-#include "Body.h"
 
 void Tile::draw() const {
     if(ob == NULL){

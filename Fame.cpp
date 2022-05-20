@@ -10,7 +10,7 @@ void write_fame_save_menu(int score) {
     std::cout << "[ ] Yes please!" << std::endl;
     std::cout << "[ ] No thanks!" << std::endl;
     std::cout << std::endl;
-    wtite_navigation();
+    write_navigation();
 }
 
 struct Lista{
@@ -19,8 +19,18 @@ struct Lista{
     Lista(int score): score(score), next(NULL){};
 };
 
-void writeList(){
-
+void writeFameList(){
+    econio_clrscr();
+    std::ifstream is("ranglista.txt");
+    if(!is.is_open()){
+        std::cout << "The list of Fame is empty :(";
+    } else {
+        std::string line;
+        while (std::getline(is, line)) {
+            std::cout << line << std::endl;
+        }
+        is.close();
+    }
 }
 
 void saveScore(int score){

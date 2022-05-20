@@ -1,9 +1,6 @@
 #include "Fruit.h"
-#include "Poisonous.h"
 #include "Snake.h"
 #include "Rotten.h"
-#include "Body.h"
-
 
 void Rotten::eatenBy(Snake *snake) {
     int change = getNutritionValue();

@@ -4,10 +4,6 @@
 #include <cstdlib>
 #include "econio.h"
 
-#define konnyuLista "dicsoseglistaKonnyu.txt"
-#define kozepesLista "dicsoseglistaKozepes.txt"
-#define nehezLista "dicsoseglistaNehez.txt"
-
 typedef enum Menu {
     mainMenu,
     escMenu,
@@ -15,17 +11,9 @@ typedef enum Menu {
     fameMenu,
     exitMenu,
     fixMode,
-    normalMode,
-    fixList,
-    normalList
+    normalMode
 } Menu;
-/*
-enum Difficulty {
-    easy,
-    normal,
-    hard
-};
-*/
+
 class Coordinate{
     int x;
     int y;
@@ -46,17 +34,7 @@ public:
     };
 };
 
-class Result{
-    char* name;
-    int points;
-    Result* next;
-public:
-    Result(char* nev = (char*)"MyName", int points = 0, Result* next = NULL) : name(nev), points(points), next(next){};
-    Result(const Result& result) : name(result.name), points(result.points), next(result.next){};
-    ~Result(){};
-};
-
-void wtite_navigation();
+void write_navigation();
 
 void write_main_menu();
 Menu main_menu_navigation();
@@ -66,9 +44,6 @@ Menu esc_menu_navigation();
 
 void write_game_set_menu();
 Menu game_set_menu_navigation();
-
-void write_fame_menu();
-Menu fame_menu_navigation();
 
 
 
