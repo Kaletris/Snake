@@ -11,8 +11,7 @@ void Rotten::eatenBy(Snake *snake) {
     if(snake->body != NULL){
         changeListLifeTime(snake->body->first, change);
     }
-
-    delete this;
+    Fruit::eatenBy(snake);
 }
 
 void Rotten::changeListLifeTime(BodyPart* bodyPart, int change, BodyPart* afore) {

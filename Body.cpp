@@ -40,15 +40,16 @@ void BodyPart::removeBodyPart() {
     }
     //ha a kigyonak tobb teste van igy torli
     BodyPart *afore = snake->body->first;
-    while (afore->next != this) {
-        afore = afore->next;
+    if (afore != NULL) {
+        while (afore->next != this) {
+            afore = afore->next;
+        }
+        if (this->tile == NULL) throw std::logic_error("Body NULL");
+        this->tile->clear();
+        delete this;
+        afore->next = NULL;
     }
-    if (this->tile == NULL) throw std::logic_error("Body NULL");
-    this->tile->clear();
-    delete this;
-    afore->next = NULL;
 }
-
 Body::~Body() {
     BodyPart *iter;
     while (first != NULL) {

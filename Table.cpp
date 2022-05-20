@@ -109,6 +109,7 @@ Fruit* Table::makeFruit() {
     }
     int tmp;
     tmp = rand() % 4;
+    tmp = 2;
     switch (tmp) {
         case 0:
         case 1:

@@ -10,6 +10,7 @@ class Fruit : public Object {
     int nutritionValue;
     char shape;
     EconioColor color;
+protected:
     Tile* tile;
 public:
     Fruit(char shape = 'F', EconioColor color = COL_YELLOW, int nutritionValue = 1, int lifeTime = 10)

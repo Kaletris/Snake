@@ -63,6 +63,7 @@ void Head::tryEat(Object *object) {
 void Head::changeLifeTime(const int change) {
     Object::changeLifeTime(change);
     if(this->getLifeTime() < 0){
+        tile->clear();
         snake->kill();
     }
 }

@@ -5,6 +5,7 @@
 
 void Fruit::eatenBy(Snake* snake) {
     snake->changeLength(nutritionValue);
+    tile->clear();
     delete this;
 }
 
