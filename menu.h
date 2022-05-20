@@ -14,27 +14,25 @@ typedef enum Menu {
     gameSetMenu,
     fameMenu,
     exitMenu,
-    easyMode,
+    fixMode,
     normalMode,
-    hardMode,
-    easyList,
-    normalList,
-    hardList
+    fixList,
+    normalList
 } Menu;
-
+/*
 enum Difficulty {
     easy,
     normal,
     hard
 };
-
-class Koordinate{
+*/
+class Coordinate{
     int x;
     int y;
 public:
-    Koordinate(int x = 0, int y = 0) : x(x), y(y){};
-    Koordinate(const Koordinate& koordinate) : x(koordinate.x), y(koordinate.y){};
-    ~Koordinate(){};
+    Coordinate(int x = 0, int y = 0) : x(x), y(y){};
+    Coordinate(const Coordinate& koordinate) : x(koordinate.x), y(koordinate.y){};
+    ~Coordinate(){};
 
     int getX() const{return x;};
     int getY() const{return y;};
@@ -47,11 +45,6 @@ public:
         econio_gotoxy(x, y);
     };
 };
-/*
-bool operator==(const Koordinate& a, const Koordinate& b){
-    return a.getX() == b.getX() && a.getY() == b.getY();
-
-}*/
 
 class Result{
     char* name;
@@ -66,7 +59,17 @@ public:
 void wtite_navigation();
 
 void write_main_menu();
+Menu main_menu_navigation();
 
-Menu menu_navigation();
+void write_esc_menu();
+Menu esc_menu_navigation();
+
+void write_game_set_menu();
+Menu game_set_menu_navigation();
+
+void write_fame_menu();
+Menu fame_menu_navigation();
+
+
 
 #endif //MAIN_CPP_MENU_H

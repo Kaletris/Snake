@@ -30,7 +30,7 @@ public:
     ~BodyPart();
 
     void removeBodyPart();
-    void changeLifetime(int change = 0);
+    void changeLifeTime(int change = 0);
 
     void eatenBy(Snake *snake);
     void draw() const;

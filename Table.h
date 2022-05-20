@@ -12,7 +12,7 @@ class Table{
 public:
     Tile*** tiles;
     Table(int height = 10, int width = 10)
-        : height(height), width(width) {
+        : height(height), width(width){
         tiles = new Tile**[height];
         for (int i = 0; i < height; i++) {
             tiles[i] = new Tile*[width];
@@ -22,7 +22,6 @@ public:
             }
         }
     };
-    Table(const Table& table){};
     ~Table();
 
     int getHeight() const {return height;};
@@ -36,6 +35,7 @@ public:
 
     Fruit* makeFruit();
     void spawnFruit(Fruit* fruit = NULL);
+
 
 };
 

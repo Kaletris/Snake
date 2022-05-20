@@ -14,14 +14,4 @@ void Snake::changeLength(int change) {
     if(length < 0){
         kill();
     }
-    /*
-     * //Amennyiben a kigyo osszes testresze tovabb el, nemcsak az ujonnan letrejottek
-    if(length < 0) kill();
-    if(body.first == NULL) return;
-    BodyPart* iter = body.first;
-    while (iter != NULL){
-        iter->changeLifetime(change);
-        iter = iter->next;
-    }
-     */
 }

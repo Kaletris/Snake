@@ -24,10 +24,7 @@ void Head::move() {
 
     //Ha meghalt a kigyo lekezeljuk
     if(!snake->isAlive()){
-        econio_gotoxy(10, 10);
-        std::cout << "A kigyo meghalt";
-        char a;
-        std::cin >> a;
+        return;
 //        throw std::logic_error("Kigyo meghalt");
     }
 
@@ -59,12 +56,12 @@ void Head::move() {
 void Head::tryEat(Object *object) {
     if(object != NULL){
         object->eatenBy(snake);
-        changeLifetime(20);
+        changeLifeTime(20);
     }
 }
 
-void Head::changeLifetime(const int change) {
-    Object::changeLifetime(change);
+void Head::changeLifeTime(const int change) {
+    Object::changeLifeTime(change);
     if(this->getLifeTime() < 0){
         snake->kill();
     }

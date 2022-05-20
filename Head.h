@@ -17,7 +17,7 @@ public:
     Head(const Head& head) : Object(head.getLifeTime()), dir(head.dir), tile(head.tile), snake(head.snake){};
     ~Head(){};
 
-    void changeLifetime(const int change) override;
+    void changeLifeTime(const int change) override;
     void changeDirection(const Direction newDir);
     Direction getDirection() const {return dir;};
     void setTile(Tile* newTile){tile = newTile;};

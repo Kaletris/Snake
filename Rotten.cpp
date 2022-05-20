@@ -19,5 +19,5 @@ void Rotten::changeListLifeTime(BodyPart* bodyPart, int change, BodyPart* afore)
     if(bodyPart->next != NULL){
         changeListLifeTime(bodyPart->next, change);
     }
-    bodyPart->changeLifetime(change);
+    bodyPart->changeLifeTime(change);
 }

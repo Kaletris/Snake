@@ -26,7 +26,7 @@ void Table::refreshTable() {
         for (int j = 0; j < width; ++j) {
             econio_gotoxy(i, j);
             if(tiles[i][j]->getObject() != NULL) {
-                tiles[i][j]->getObject()->changeLifetime(-1);
+                tiles[i][j]->getObject()->changeLifeTime(-1);
             }
             tiles[i][j]->draw();
         }
@@ -85,6 +85,9 @@ Table::~Table() {
     for (int i = 0; i < height; ++i) {
         for (int j = 0; j < width; ++j) {
             //tiles[i][j]->clear();
+            if(tiles[i][j]->getObject() != NULL){
+                tiles[i][j]->getObject()->changeLifeTime(-1000);
+            }
             delete tiles[i][j];
         }
         delete[] tiles[i];
@@ -125,6 +128,7 @@ void Table::spawnFruit(Fruit* fruit) {
 
     if(fruit == NULL){
         fruit = makeFruit();
+
     }
 
     int sum = 0;
@@ -142,6 +146,7 @@ void Table::spawnFruit(Fruit* fruit) {
     int pos;
     pos = rand() % sum;
     freeTiles[pos]->set(fruit);
+    fruit->setTile(freeTiles[pos]);
 }
 
 
